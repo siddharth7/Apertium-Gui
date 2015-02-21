@@ -11,3 +11,5 @@ To run this,
 1.keep all the file in a single folder
 2.You need to have PyQt4 installed and a python compiler.
 3.In the command line type:  python backendapertiummbasic.py
+
+As of now you need PyQt libraries to run this, but a executable can also be build, which i would be doing in a laterstage(it will not require PyQt libraries)
