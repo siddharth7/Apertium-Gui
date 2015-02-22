@@ -1,11 +1,8 @@
 # Apertium-Gui
 This a basic Gui that I have developed for apertium, as of now it doesn't translates any language.
 This app just converts the text written in box and outputs the same data on the ouptut window in real time.
-click on Start,and start typing.
-To stop, press Stop.
-To clear the data, press Clear.
-
-The translation part is still to be added as i am not able to build the existing apertium environment on my system.
+Just select language pair, and start typing(prerequisite: start the apertium - apy on localhost)
+currently only en-eo(english-esparanto) translation is working
 
 To run this,
 1.keep all the file in a single folder
