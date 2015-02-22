@@ -1,3 +1,5 @@
+
+
 from PyQt4 import QtCore, QtGui
 
 try:
@@ -29,15 +31,9 @@ class Ui_MainWindow(object):
         self.output.setText(_fromUtf8(""))
         self.output.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.output.setObjectName(_fromUtf8("output"))
-        self.convert = QtGui.QPushButton(self.centralwidget)
-        self.convert.setGeometry(QtCore.QRect(120, 350, 98, 27))
-        self.convert.setObjectName(_fromUtf8("convert"))
         self.clr = QtGui.QPushButton(self.centralwidget)
         self.clr.setGeometry(QtCore.QRect(310, 350, 98, 27))
         self.clr.setObjectName(_fromUtf8("clr"))
-        self.st = QtGui.QPushButton(self.centralwidget)
-        self.st.setGeometry(QtCore.QRect(220, 380, 98, 27))
-        self.st.setObjectName(_fromUtf8("st"))
         self.select1 = QtGui.QComboBox(self.centralwidget)
         self.select1.setGeometry(QtCore.QRect(40, 20, 78, 27))
         self.select1.setObjectName(_fromUtf8("select1"))
@@ -45,9 +41,11 @@ class Ui_MainWindow(object):
         self.select1.addItem(_fromUtf8(""))
         self.select1.addItem(_fromUtf8(""))
         self.select1.addItem(_fromUtf8(""))
+        self.select1.addItem(_fromUtf8(""))
         self.select2 = QtGui.QComboBox(self.centralwidget)
         self.select2.setGeometry(QtCore.QRect(380, 20, 78, 27))
         self.select2.setObjectName(_fromUtf8("select2"))
+        self.select2.addItem(_fromUtf8(""))
         self.select2.addItem(_fromUtf8(""))
         self.select2.addItem(_fromUtf8(""))
         self.select2.addItem(_fromUtf8(""))
@@ -68,15 +66,15 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-        self.convert.setText(_translate("MainWindow", "Start", None))
         self.clr.setText(_translate("MainWindow", "Clear ", None))
-        self.st.setText(_translate("MainWindow", "Stop", None))
         self.select1.setItemText(0, _translate("MainWindow", "English", None))
-        self.select1.setItemText(1, _translate("MainWindow", "French", None))
-        self.select1.setItemText(2, _translate("MainWindow", "russian", None))
-        self.select1.setItemText(3, _translate("MainWindow", "Malay", None))
+        self.select1.setItemText(1, _translate("MainWindow", "Esparanto", None))
+        self.select1.setItemText(2, _translate("MainWindow", "French", None))
+        self.select1.setItemText(3, _translate("MainWindow", "russian", None))
+        self.select1.setItemText(4, _translate("MainWindow", "Malay", None))
         self.select2.setItemText(0, _translate("MainWindow", "English", None))
-        self.select2.setItemText(1, _translate("MainWindow", "French", None))
-        self.select2.setItemText(2, _translate("MainWindow", "Malay", None))
-        self.select2.setItemText(3, _translate("MainWindow", "Russian", None))
+        self.select2.setItemText(1, _translate("MainWindow", "Esparanto", None))
+        self.select2.setItemText(2, _translate("MainWindow", "French", None))
+        self.select2.setItemText(3, _translate("MainWindow", "Malay", None))
+        self.select2.setItemText(4, _translate("MainWindow", "Russian", None))
 
