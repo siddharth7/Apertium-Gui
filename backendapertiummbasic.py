@@ -2,7 +2,7 @@ import sys
 import urllib
 import re
 from PyQt4 import QtCore, QtGui
-from apertiumbasicuimain import Ui_MainWindow
+from apertiumbasicmainui import Ui_MainWindow
 
 
 class MyForm(QtGui.QMainWindow):
@@ -16,25 +16,20 @@ class MyForm(QtGui.QMainWindow):
 		QtCore.QObject.connect(self.ui.input, QtCore.SIGNAL("textChanged(QString)"), self.constantUpdate)
 		#QtCore.QObject.connect(self.ui.st, QtCore.SIGNAL("clicked()"), self.stp)
 
-	# def dosomework(self):
-	# 	#self.ctimer.start(2.000)
-	# 	#self.ui.output.setText(self.ui.input.text())
 	def constantUpdate(self):
 		if(str(self.ui.select1.currentText())=='English' and str(self.ui.select2.currentText())=='Esparanto'):
 			b='http://127.0.0.1:2737/translate?langpair=en|eo&q=%s' % (self.ui.input.text())
 			response = urllib.urlopen(b)
 			html = response.read()
 			nestr = re.sub(r'[^a-zA-Z ]',r'',html)
-			length=len(nestr.split())
-			i=5
-			a=''
-			while(i<length):
-			    a=a+nestr.split()[i]+' '
+			i=2
+			translatedString=''
+			while(nestr.split()[i]!='responseDetails'):
+			    #if(nestr.split()[i]!='responseData' or nestr.split()[i]!='translatedText'):
+			    translatedString=translatedString+nestr.split()[i]+' '
 			    i+=1
-			response.close() 
-			self.ui.output.setText(a)
-	# def stp(self):
-	# 	self.ctimer.stop()
+			response.close()
+			self.ui.output.setText(translatedString)
 if __name__=='__main__':	
     app=QtGui.QApplication(sys.argv)
     ex=MyForm()
