@@ -1,4 +1,11 @@
+# -*- coding: utf-8 -*-
 
+# Form implementation generated from reading ui file 'apertiumbasicuimain.ui'
+#
+# Created: Tue Feb 24 15:07:00 2015
+#      by: PyQt4 UI code generator 4.10.4
+#
+# WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
@@ -33,6 +40,7 @@ class Ui_MainWindow(object):
         self.select1.addItem(_fromUtf8(""))
         self.select1.addItem(_fromUtf8(""))
         self.select1.addItem(_fromUtf8(""))
+        self.select1.addItem(_fromUtf8(""))
         self.select2 = QtGui.QComboBox(self.centralwidget)
         self.select2.setGeometry(QtCore.QRect(340, 20, 131, 27))
         self.select2.setObjectName(_fromUtf8("select2"))
@@ -48,6 +56,9 @@ class Ui_MainWindow(object):
         self.input.setGeometry(QtCore.QRect(20, 60, 221, 281))
         self.input.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.input.setObjectName(_fromUtf8("input"))
+        self.showerror = QtGui.QPushButton(self.centralwidget)
+        self.showerror.setGeometry(QtCore.QRect(400, 370, 98, 27))
+        self.showerror.setObjectName(_fromUtf8("showerror"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 538, 25))
@@ -66,13 +77,15 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
         self.clr.setText(_translate("MainWindow", "Clear ", None))
         self.select1.setItemText(0, _translate("MainWindow", "English", None))
-        self.select1.setItemText(1, _translate("MainWindow", "Esparanto", None))
-        self.select1.setItemText(2, _translate("MainWindow", "French", None))
-        self.select1.setItemText(3, _translate("MainWindow", "russian", None))
-        self.select1.setItemText(4, _translate("MainWindow", "Malay", None))
+        self.select1.setItemText(1, _translate("MainWindow", "Welsh", None))
+        self.select1.setItemText(2, _translate("MainWindow", "Esparanto", None))
+        self.select1.setItemText(3, _translate("MainWindow", "French", None))
+        self.select1.setItemText(4, _translate("MainWindow", "russian", None))
+        self.select1.setItemText(5, _translate("MainWindow", "Malay", None))
         self.select2.setItemText(0, _translate("MainWindow", "English", None))
         self.select2.setItemText(1, _translate("MainWindow", "Esparanto", None))
         self.select2.setItemText(2, _translate("MainWindow", "French", None))
         self.select2.setItemText(3, _translate("MainWindow", "Malay", None))
         self.select2.setItemText(4, _translate("MainWindow", "Russian", None))
+        self.showerror.setText(_translate("MainWindow", "Show Error", None))
 
