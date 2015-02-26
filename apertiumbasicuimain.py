@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'apertiumbasicuimain.ui'
 #
-# Created: Tue Feb 24 15:07:00 2015
+# Created: Wed Feb 25 12:28:14 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,20 +35,9 @@ class Ui_MainWindow(object):
         self.select1 = QtGui.QComboBox(self.centralwidget)
         self.select1.setGeometry(QtCore.QRect(80, 20, 121, 27))
         self.select1.setObjectName(_fromUtf8("select1"))
-        self.select1.addItem(_fromUtf8(""))
-        self.select1.addItem(_fromUtf8(""))
-        self.select1.addItem(_fromUtf8(""))
-        self.select1.addItem(_fromUtf8(""))
-        self.select1.addItem(_fromUtf8(""))
-        self.select1.addItem(_fromUtf8(""))
         self.select2 = QtGui.QComboBox(self.centralwidget)
         self.select2.setGeometry(QtCore.QRect(340, 20, 131, 27))
         self.select2.setObjectName(_fromUtf8("select2"))
-        self.select2.addItem(_fromUtf8(""))
-        self.select2.addItem(_fromUtf8(""))
-        self.select2.addItem(_fromUtf8(""))
-        self.select2.addItem(_fromUtf8(""))
-        self.select2.addItem(_fromUtf8(""))
         self.output = QtGui.QTextEdit(self.centralwidget)
         self.output.setGeometry(QtCore.QRect(280, 60, 241, 281))
         self.output.setObjectName(_fromUtf8("output"))
@@ -56,17 +45,21 @@ class Ui_MainWindow(object):
         self.input.setGeometry(QtCore.QRect(20, 60, 221, 281))
         self.input.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.input.setObjectName(_fromUtf8("input"))
-        self.showerror = QtGui.QPushButton(self.centralwidget)
-        self.showerror.setGeometry(QtCore.QRect(400, 370, 98, 27))
-        self.showerror.setObjectName(_fromUtf8("showerror"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 538, 25))
         self.menubar.setObjectName(_fromUtf8("menubar"))
+        self.menuHelp = QtGui.QMenu(self.menubar)
+        self.menuHelp.setObjectName(_fromUtf8("menuHelp"))
+        self.menuInstall_more_Language_pair = QtGui.QMenu(self.menuHelp)
+        self.menuInstall_more_Language_pair.setObjectName(_fromUtf8("menuInstall_more_Language_pair"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
+        self.menuInstall_more_Language_pair.addSeparator()
+        self.menuHelp.addAction(self.menuInstall_more_Language_pair.menuAction())
+        self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.clr, QtCore.SIGNAL(_fromUtf8("clicked()")), self.output.clear)
@@ -76,16 +69,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
         self.clr.setText(_translate("MainWindow", "Clear ", None))
-        self.select1.setItemText(0, _translate("MainWindow", "English", None))
-        self.select1.setItemText(1, _translate("MainWindow", "Welsh", None))
-        self.select1.setItemText(2, _translate("MainWindow", "Esparanto", None))
-        self.select1.setItemText(3, _translate("MainWindow", "French", None))
-        self.select1.setItemText(4, _translate("MainWindow", "russian", None))
-        self.select1.setItemText(5, _translate("MainWindow", "Malay", None))
-        self.select2.setItemText(0, _translate("MainWindow", "English", None))
-        self.select2.setItemText(1, _translate("MainWindow", "Esparanto", None))
-        self.select2.setItemText(2, _translate("MainWindow", "French", None))
-        self.select2.setItemText(3, _translate("MainWindow", "Malay", None))
-        self.select2.setItemText(4, _translate("MainWindow", "Russian", None))
-        self.showerror.setText(_translate("MainWindow", "Show Error", None))
+        self.menuHelp.setTitle(_translate("MainWindow", "Help", None))
+        self.menuInstall_more_Language_pair.setTitle(_translate("MainWindow", "Install more Language pair", None))
 
