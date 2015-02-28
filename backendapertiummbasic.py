@@ -1,77 +1,86 @@
+'''
+backend for apertium gui
+'''
 import sys
 import urllib
+import json
+from requests import get
 import re
-from PyQt4 import QtCore, QtGui		
+from PyQt4 import QtCore, QtGui
 from apertiumbasicuimain import Ui_MainWindow
-
-class errorform(QtGui.QDialog):
-    def __init__(self, parent=None):
-        super(errorform, self).__init__(parent)
-
-        self.buttonBox = QtGui.QDialogButtonBox(self)
-   
-        self.textBrowser = QtGui.QTextBrowser(self)
-        self.textBrowser.append("This language pair is not available or the localhost server is not running, please refer to docs, http://wiki.apertium.org/wiki/Apertium-apy or http://wiki.apertium.org/wiki/List_of_language_pairs")
-        
-        
-        self.verticalLayout = QtGui.QVBoxLayout(self)
-        self.verticalLayout.addWidget(self.textBrowser)
-       
+LANG_DICT = {"eng":"english",
+             "epo":"esparanto",
+             "cym":"welsh",
+             "kaz":"kazak",
+             "tat":"tatar",
+             }
+INV_LANG_DICT = {v: k for k, v in LANG_DICT.items()}
 class MyForm(QtGui.QMainWindow):
-	def __init__(self,parent=None):
-		super(MyForm, self).__init__(parent)
-		
-		self.ui=Ui_MainWindow()
-		self.ui.setupUi(self)
-		self.dialogTextBrowser = errorform(self)
-		QtCore.QObject.connect(self.ui.input, QtCore.SIGNAL("textChanged(QString)"), self.constantUpdate)
-		self.addpairs()
-	def addpairs(self):
-		l1=[]
-		l2=[]
-		b='http://127.0.0.1:2737/listPairs'
-		response = urllib.urlopen(b)
-		html = response.read()
-		nestr= re.sub(r'[^a-zA-Z ]',r'',html)
-		i=0
-		for line in nestr.split():
-		    if(line=='targetLanguage'):
-		        l1.append(nestr.split()[i+1])
-		    elif(line=='sourceLanguage'):
-		        l2.append(nestr.split()[i+1])
-		    i+=1
-		self.ui.select1.addItems(l2)
-		self.ui.select2.addItems(l1)
-
-	def constantUpdate(self):
-		if(self.ui.select1.currentText()!=self.ui.select2.currentText()):
-			b='http://127.0.0.1:2737/translate?langpair=%s|%s&q=%s' % (self.ui.select1.currentText(),self.ui.select2.currentText(),self.ui.input.text())
-			response = urllib.urlopen(b)
-			html = response.read()
-			nestr = re.sub(r'[^a-zA-Z{}?! ]',r'',html)
-			#print nestr
-			translatedString=''
-			i=0
-			flag=0
-			opening_brak=0
-			while(opening_brak!=2):
-			    if(nestr[i]=='{'):
-			        opening_brak+=1
-			        #print nestr[i]
-			    i+=1
-			i=i+15
-			while(nestr[i]!='}'):
-			    translatedString=translatedString+nestr[i]
-			    i+=1
-			#print a
-			response.close()
-			self.ui.output.setText(translatedString)
-		else:
-			self.ui.output.setText(self.ui.input.text())
-if __name__=='__main__':	
-    app=QtGui.QApplication(sys.argv)
-
-    app.setApplicationName('Apertium Translator Tool')
-    ex=MyForm()
+    '''
+    main window setup
+    '''
+    def __init__(self, parent=None):
+        super(MyForm, self).__init__(parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        QtCore.QObject.connect(self.ui.input,
+                               QtCore.SIGNAL("textChanged(QString)"), self.translate_func)
+        self.add_pairs()
+    def add_pairs(self):
+        '''
+        extract available language pairs
+        '''
+        list1 = []
+        urllink = 'http://127.0.0.1:2737/listPairs'
+        response = json.loads(get(urllink).text)["responseData"]
+        for res in response:
+            langpair = ''
+            srclang = res["sourceLanguage"]
+            trglang = res["targetLanguage"]
+            for key in LANG_DICT.keys():
+                if key == srclang:
+                    langpair = langpair + LANG_DICT[key]
+            if langpair == '':
+                langpair = langpair + res["sourceLanguage"]
+            langpair = langpair + '  -->  '
+            for key in LANG_DICT.keys():
+                if key == trglang:
+                    langpair = langpair + LANG_DICT[key]
+            if langpair[-1:] == ' ':
+                langpair = langpair + trglang
+            list1.append(langpair)
+        self.ui.select1.addItems(list1)
+    def translate_func(self):
+        '''
+        translate text
+        '''
+        if self.ui.select1.currentText():
+            currentpair = str(self.ui.select1.currentText())
+            text1 = ''
+            text2 = ''
+            flag = 1
+            for k in range(len(currentpair)):
+                if currentpair[k] != ' ' and flag == 1:
+                    text1 = text1 + currentpair[k]
+                elif currentpair[k] == ' ':
+                    flag = 0
+                elif flag == 0:
+                    text2 = text2 + currentpair[k]
+            text2 = text2[3:]
+            for key in INV_LANG_DICT.keys():
+                if key == text1:
+                    text1 = INV_LANG_DICT[text1]
+            for key in INV_LANG_DICT.keys():
+                if key == text2:
+                    text2 = INV_LANG_DICT[text2]
+            urllink = 'http://127.0.0.1:2737/translate?langpair=%s|%s&q=%s' % (text1, text2, self.ui.input.text())
+            response = json.loads(get(urllink).text)["responseData"]
+            translatedstring = response["translatedText"]
+            self.ui.output.setText(translatedstring)
+        else:
+            self.ui.output.setText(self.ui.input.text())
+if __name__ == '__main__':
+    APP = QtGui.QApplication(sys.argv)
+    ex = MyForm()
     ex.show()
-    sys.exit(app.exec_())
+    sys.exit(APP.exec_())
