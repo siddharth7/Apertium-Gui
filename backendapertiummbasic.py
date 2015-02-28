@@ -2,10 +2,8 @@
 backend for apertium gui
 '''
 import sys
-import urllib
 import json
 from requests import get
-import re
 from PyQt4 import QtCore, QtGui
 from apertiumbasicuimain import Ui_MainWindow
 LANG_DICT = {"eng":"english",
