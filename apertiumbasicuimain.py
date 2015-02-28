@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'apertiumbasicuimain.ui'
 #
-# Created: Wed Feb 25 12:28:14 2015
+# Created: Sat Feb 28 18:14:27 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -33,11 +33,14 @@ class Ui_MainWindow(object):
         self.clr.setGeometry(QtCore.QRect(220, 370, 98, 27))
         self.clr.setObjectName(_fromUtf8("clr"))
         self.select1 = QtGui.QComboBox(self.centralwidget)
-        self.select1.setGeometry(QtCore.QRect(80, 20, 121, 27))
+        self.select1.setGeometry(QtCore.QRect(140, 10, 211, 27))
+        font = QtGui.QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        self.select1.setFont(font)
+        self.select1.setInsertPolicy(QtGui.QComboBox.InsertAlphabetically)
+        self.select1.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.select1.setObjectName(_fromUtf8("select1"))
-        self.select2 = QtGui.QComboBox(self.centralwidget)
-        self.select2.setGeometry(QtCore.QRect(340, 20, 131, 27))
-        self.select2.setObjectName(_fromUtf8("select2"))
         self.output = QtGui.QTextEdit(self.centralwidget)
         self.output.setGeometry(QtCore.QRect(280, 60, 241, 281))
         self.output.setObjectName(_fromUtf8("output"))
