@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'apertiumbasicuimain.ui'
 #
-# Created: Sat Feb 28 18:14:27 2015
+# Created: Sun Mar  1 13:01:47 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -33,7 +33,7 @@ class Ui_MainWindow(object):
         self.clr.setGeometry(QtCore.QRect(220, 370, 98, 27))
         self.clr.setObjectName(_fromUtf8("clr"))
         self.select1 = QtGui.QComboBox(self.centralwidget)
-        self.select1.setGeometry(QtCore.QRect(140, 10, 211, 27))
+        self.select1.setGeometry(QtCore.QRect(140, 10, 78, 27))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
@@ -48,20 +48,22 @@ class Ui_MainWindow(object):
         self.input.setGeometry(QtCore.QRect(20, 60, 221, 281))
         self.input.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.input.setObjectName(_fromUtf8("input"))
+        self.exitbtn = QtGui.QPushButton(self.centralwidget)
+        self.exitbtn.setGeometry(QtCore.QRect(430, 370, 98, 27))
+        self.exitbtn.setObjectName(_fromUtf8("exitbtn"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 538, 25))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName(_fromUtf8("menuHelp"))
-        self.menuInstall_more_Language_pair = QtGui.QMenu(self.menuHelp)
-        self.menuInstall_more_Language_pair.setObjectName(_fromUtf8("menuInstall_more_Language_pair"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
-        self.menuInstall_more_Language_pair.addSeparator()
-        self.menuHelp.addAction(self.menuInstall_more_Language_pair.menuAction())
+        self.actionOpen = QtGui.QAction(MainWindow)
+        self.actionOpen.setObjectName(_fromUtf8("actionOpen"))
+        self.menuHelp.addAction(self.actionOpen)
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -72,6 +74,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
         self.clr.setText(_translate("MainWindow", "Clear ", None))
-        self.menuHelp.setTitle(_translate("MainWindow", "Help", None))
-        self.menuInstall_more_Language_pair.setTitle(_translate("MainWindow", "Install more Language pair", None))
+        self.exitbtn.setText(_translate("MainWindow", "Exit", None))
+        self.menuHelp.setTitle(_translate("MainWindow", "File", None))
+        self.actionOpen.setText(_translate("MainWindow", "Open", None))
 
