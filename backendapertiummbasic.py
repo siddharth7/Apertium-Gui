@@ -2,7 +2,9 @@
 backend for apertium gui
 '''
 import sys
+import os
 import json
+import subprocess
 from requests import get
 from PyQt4 import QtCore, QtGui
 from apertiumbasicuimain import Ui_MainWindow
@@ -23,7 +25,14 @@ class MyForm(QtGui.QMainWindow):
         self.ui.setupUi(self)
         QtCore.QObject.connect(self.ui.input,
                                QtCore.SIGNAL("textChanged(QString)"), self.translate_func)
+        QtCore.QObject.connect(self.ui.exitbtn,
+                               QtCore.SIGNAL("clicked()"), self.stop_server)
         self.add_pairs()
+    def stop_server(self):
+        os.chmod('stopserverscript.sh', 0o755)
+        subprocess.call("./stopserverscript.sh")
+        self.destroy()
+        
     def add_pairs(self):
         '''
         extract available language pairs
